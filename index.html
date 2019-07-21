@@ -1,0 +1,45 @@
+<html>
+<body>
+  <form>
+    <input type="button" id="initBtn" value="GO" />
+  </form>
+  <img id="img" />
+  <div id="btns" />
+  <div id="results" />
+    <script type="text/javascript">
+
+    const animals = ['Tortoise', 'Turtle'];
+
+    document.getElementById('initBtn').onclick = function() {
+      this.style.visibility= 'hidden';
+      src = findImage(getRandomElement(animals));
+      console.log(src);
+      changeImage(src);
+      createButton('Tortoise');
+      createButton('Turtle');
+    }
+
+    function createButton(val) {
+      console.log(val)
+      var button = document.createElement("input");
+      button.type = "button";
+      button.value = val;
+      // button.onclick = funcbtns
+      var img = document.getElementById("btns");
+      img.appendChild(button);
+    }
+
+    function getRandomElement(array) {
+      return rand = array[Math.floor(Math.random() * array.length)];
+    }
+
+    function findImage(val) {
+      return src = 'https://loremflickr.com/320/240/' + val + '?random=' + new Date().getMilliseconds();
+    }
+
+    function changeImage(src) {
+      document.getElementById("img").src=src;
+    }
+    </script>
+  </body>
+  </html>
