@@ -1,45 +1,80 @@
 <html>
 <body>
-  <form>
-    <input type="button" id="initBtn" value="GO" />
-  </form>
   <img id="img" />
+  <div id='res'>
+    score: <div id="score"/>
+  </div>
   <div id="btns" />
-  <div id="results" />
-    <script type="text/javascript">
+  <script type="text/javascript">
 
-    const animals = ['Tortoise', 'Turtle'];
+  const animals = ['tortoise', 'turtle'];
 
-    document.getElementById('initBtn').onclick = function() {
-      this.style.visibility= 'hidden';
-      src = findImage(getRandomElement(animals));
-      console.log(src);
-      changeImage(src);
-      createButton('Tortoise');
-      createButton('Turtle');
+  var animal;
+  var score=0;
+
+  window.onload = function () {
+    createButton('Tortoise');
+    createButton('Turtle');
+    updateScore();
+    updateImage();
+    disableButtons();
+  }
+
+
+  function updateImage() {
+    animal = getRandomElement(animals);
+    changeImage(findImage(animal));
+  }
+
+
+  function createButton(val) {
+    // console.log(val)
+    var button = document.createElement("input");
+    button.type = "button";
+    button.value = val;
+    button.name=val.toLowerCase();
+    // button.onclick = funcbtns
+    var img = document.getElementById("btns");
+    img.appendChild(button);
+    document.getElementById("btns").onclick = function(e) {
+      buttonEvent(e)
+    };
+    // document.getElementById("btns").onclick = buttonEvent(e);
+  }
+
+  function getRandomElement(array) {
+    return rand = array[Math.floor(Math.random() * array.length)];
+  }
+
+  function findImage(val) {
+    var src = 'https://loremflickr.com/320/240/' + val + '?random=' + new Date().getMilliseconds();
+    console.log(src);
+    return src;
+  }
+
+  function changeImage(src) {
+    document.getElementById("img").src=src;
+  }
+
+  function buttonEvent(e) {
+    if (e.target.name === animal) {
+      score++;
     }
-
-    function createButton(val) {
-      console.log(val)
-      var button = document.createElement("input");
-      button.type = "button";
-      button.value = val;
-      // button.onclick = funcbtns
-      var img = document.getElementById("btns");
-      img.appendChild(button);
+    else {
+      score--;
     }
+    updateScore();
+    updateImage();
+  }
 
-    function getRandomElement(array) {
-      return rand = array[Math.floor(Math.random() * array.length)];
-    }
+  function updateScore() {
+    document.getElementById('score').innerHTML=score;
+  }
 
-    function findImage(val) {
-      return src = 'https://loremflickr.com/320/240/' + val + '?random=' + new Date().getMilliseconds();
-    }
+  function disableButtons() {
+      document.getElementById("btns").disabled = true;
+  }
 
-    function changeImage(src) {
-      document.getElementById("img").src=src;
-    }
-    </script>
-  </body>
-  </html>
+</script>
+</body>
+</html>
