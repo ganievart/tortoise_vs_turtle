@@ -1,80 +1,36 @@
 <html>
+<head>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <script type="text/javascript" src="app.js"> </script>
+</head>
 <body>
-  <img id="img" />
-  <div id='res'>
-    score: <div id="score"/>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Turtle vs Tortoise</a>
+  </nav>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-4 text-right">
+        <h2>Timer:
+          <p id="timer"></p>
+        </h2>
+      </div>
+      <div class="col-4 text-center">
+        <img id="img"/>
+      </div>
+      <div class="col-4 text-left">
+        <h2>Score:
+          <div id="score">
+          </div>
+        </h2>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-4 text-center">
+        <div id="btns"></div>
+      </div>
+    </div>
   </div>
-  <div id="btns" />
-  <script type="text/javascript">
-
-  const animals = ['tortoise', 'turtle'];
-
-  var animal;
-  var score=0;
-
-  window.onload = function () {
-    createButton('Tortoise');
-    createButton('Turtle');
-    updateScore();
-    updateImage();
-    disableButtons();
-  }
-
-
-  function updateImage() {
-    animal = getRandomElement(animals);
-    changeImage(findImage(animal));
-  }
-
-
-  function createButton(val) {
-    // console.log(val)
-    var button = document.createElement("input");
-    button.type = "button";
-    button.value = val;
-    button.name=val.toLowerCase();
-    // button.onclick = funcbtns
-    var img = document.getElementById("btns");
-    img.appendChild(button);
-    document.getElementById("btns").onclick = function(e) {
-      buttonEvent(e)
-    };
-    // document.getElementById("btns").onclick = buttonEvent(e);
-  }
-
-  function getRandomElement(array) {
-    return rand = array[Math.floor(Math.random() * array.length)];
-  }
-
-  function findImage(val) {
-    var src = 'https://loremflickr.com/320/240/' + val + '?random=' + new Date().getMilliseconds();
-    console.log(src);
-    return src;
-  }
-
-  function changeImage(src) {
-    document.getElementById("img").src=src;
-  }
-
-  function buttonEvent(e) {
-    if (e.target.name === animal) {
-      score++;
-    }
-    else {
-      score--;
-    }
-    updateScore();
-    updateImage();
-  }
-
-  function updateScore() {
-    document.getElementById('score').innerHTML=score;
-  }
-
-  function disableButtons() {
-      document.getElementById("btns").disabled = true;
-  }
-
-</script>
+</div>
 </body>
 </html>
