@@ -1,55 +1,46 @@
 const animals = ['tortoise', 'turtle'];
 
-var animal;
-var score=0;
+let animal;
+let score=0;
 
-window.onload = function () {
-  createButton('Tortoise');
-  createButton('Turtle');
+$(document).ready(function(){
   updateScore();
   updateImage();
-  disableButtons();
-  timerUpdater();
-}
+
+  $( ".button" ).click(function() {
+    buttonEvent($(this))
+  });
+
+  updateTimer();
+});
+
+let promise = new Promise((resolve, reject) => {
+   updateImage();
+});
 
 
-function updateImage() {
+let updateImage = () => {
   animal = getRandomElement(animals);
   changeImage(findImage(animal));
 }
 
-
-function createButton(val) {
-  // console.log(val)
-  var button = document.createElement("input");
-  button.type = "button";
-  button.value = val;
-  button.name=val.toLowerCase();
-  // button.onclick = funcbtns
-  var img = document.getElementById("btns");
-  img.appendChild(button);
-  document.getElementById("btns").onclick = function(e) {
-    buttonEvent(e)
-  };
-  // document.getElementById("btns").onclick = buttonEvent(e);
-}
-
-function getRandomElement(array) {
+let getRandomElement = array => {
   return rand = array[Math.floor(Math.random() * array.length)];
 }
 
-function findImage(val) {
+let findImage = val => {
   var src = 'https://loremflickr.com/320/240/' + val + '?random=' + new Date().getMilliseconds();
   console.log(src);
   return src;
 }
 
-function changeImage(src) {
-  document.getElementById("img").src=src;
+let changeImage = src => {
+  $("#img").attr("src", src);
+
 }
 
-function buttonEvent(e) {
-  if (e.target.name === animal) {
+let buttonEvent = e => {
+  if ($(e).val() === animal) {
     score++;
   }
   else {
@@ -59,30 +50,25 @@ function buttonEvent(e) {
   updateImage();
 }
 
-function updateScore() {
-  document.getElementById('score').innerHTML=score;
+let updateScore = () => {
+  $("#score").html(score);
 }
 
-function disableButtons() {
-  document.getElementById("btns").disabled = true;
+let disableButtons = () => {
+  // not working
+  // document.getElementById("btns").disabled = true;
 }
 
-function timerUpdater() {
+let updateTimer = () => {
   var countDownDate = 10000000;
-  console.log(countDownDate);
   function tick() {
-    document.getElementById("timer").innerHTML = countDownDate + "s ";
-    console.log(countDownDate);
+    $("#timer").html(countDownDate + "s ");
     countDownDate--;
     if( countDownDate > 0 ) {
       setTimeout(tick, 1000);
     } else {
-      document.getElementById("timer").innerHTML = "EXPIRED";
+      $("#timer").html(countDownDate + "EXPIRED");
     }
   }
   tick();
-}
-
-function timedOut() {
-  document.getElementById("timer").innerHTML = "EXPIRED";
 }
