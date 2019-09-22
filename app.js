@@ -1,62 +1,73 @@
-const animals = ['tortoise', 'turtle'];
+let app = {
+  animals : ['tortoise', 'turtle'],
+  score : 0,
+  key: '868a9f43d8f17114fa4933992e882734',
+  secret: 'da0b36527464b3e1',
+  flickrApiUrl: 'https://www.flickr.com/services/feeds/photos_public.gne?jsoncallback=?'
+};
 
-let animal;
-let score=0;
+$(document).ready(function() {
+  app.tortoises = test(app.animals[0]);
+  setTimeout(function() {
+    app.turtles = test(app.animals[1]);
+  }, 1000);
 
-$(document).ready(function(){
   updateScore();
-  updateImage();
-
-  $( ".button" ).click(function() {
+  loadImage(app.tortoises);
+  $(".button").click(function() {
     buttonEvent($(this))
   });
-
   updateTimer();
 });
 
-let promise = new Promise((resolve, reject) => {
-   updateImage();
-});
+let updateScore = () => {
+  $("#score").html(app.score);
+}
+
+let test = animal => {
+  arr = [];
+  $.getJSON(app.flickrApiUrl, {
+    tags: animal,
+    tagmode: "any",
+    format: "json"
+  }).done(function (result, status, xhr) {
+    $.each(result.items, function (i, item) {
+      arr.push(item.media.m);
+    });
+  });
+  return arr;
+}
+
+let loadImage = (arrayImages) => {
+  $(".button").hide();
+  // animals = app.tortoises;
+  console.log(arrayImages.lenght);
+  let src = getRandomElement(app.tortoises);
+  // console.app.tortoises;
 
 
-let updateImage = () => {
-  animal = getRandomElement(animals);
-  changeImage(findImage(animal));
+  console.log(src);
+
+  $("#img").attr("src", src);
+
+  $('#img').on('load', () => $(".button").show());
 }
 
 let getRandomElement = array => {
+  console.log(array);
+  console.log(Object.keys(array).length);
   return rand = array[Math.floor(Math.random() * array.length)];
 }
 
-let findImage = val => {
-  var src = 'https://loremflickr.com/320/240/' + val + '?random=' + new Date().getMilliseconds();
-  console.log(src);
-  return src;
-}
-
-let changeImage = src => {
-  $("#img").attr("src", src);
-
-}
-
 let buttonEvent = e => {
-  if ($(e).val() === animal) {
-    score++;
+  if ($(e).val() === app.animal) {
+    app.score++;
   }
   else {
-    score--;
+    app.score--;
   }
   updateScore();
-  updateImage();
-}
-
-let updateScore = () => {
-  $("#score").html(score);
-}
-
-let disableButtons = () => {
-  // not working
-  // document.getElementById("btns").disabled = true;
+  loadImage();
 }
 
 let updateTimer = () => {
