@@ -1,19 +1,26 @@
 let app = {
   animals : ['tortoise', 'turtle'],
+  flickr_result : [],
+  test_promise: [],
   score : 0,
-  key: '868a9f43d8f17114fa4933992e882734',
-  secret: 'da0b36527464b3e1',
+  key: '868a9f43d8f17114fa4933992e882734', //not used
+  secret: 'da0b36527464b3e1', // not used
   flickrApiUrl: 'https://www.flickr.com/services/feeds/photos_public.gne?jsoncallback=?'
 };
 
 $(document).ready(function() {
-  app.tortoises = test(app.animals[0]);
-  setTimeout(function() {
-    app.turtles = test(app.animals[1]);
-  }, 1000);
+  console.log(app.animals);
 
-  updateScore();
-  loadImage(app.tortoises);
+  flickr_result = new Promise((resolve) => {
+    findOnFlickrByTag(resolve, app.animals[0]);
+  });
+
+  flickr_result.then(function(value) {
+    console.log(value);
+    updateScore();
+    loadImage(value);
+  });
+
   $(".button").click(function() {
     buttonEvent($(this))
   });
@@ -24,29 +31,25 @@ let updateScore = () => {
   $("#score").html(app.score);
 }
 
-let test = animal => {
+let findOnFlickrByTag = (resolve, animal) => {
   arr = [];
   $.getJSON(app.flickrApiUrl, {
     tags: animal,
     tagmode: "any",
     format: "json"
-  }).done(function (result, status, xhr) {
+  }).then(function (result) {
     $.each(result.items, function (i, item) {
       arr.push(item.media.m);
     });
+    resolve(arr);
   });
-  return arr;
+
 }
 
 let loadImage = (arrayImages) => {
   $(".button").hide();
-  // animals = app.tortoises;
-  console.log(arrayImages.lenght);
-  let src = getRandomElement(app.tortoises);
-  // console.app.tortoises;
 
-
-  console.log(src);
+  let src = getRandomElement(arrayImages);
 
   $("#img").attr("src", src);
 
@@ -54,8 +57,7 @@ let loadImage = (arrayImages) => {
 }
 
 let getRandomElement = array => {
-  console.log(array);
-  console.log(Object.keys(array).length);
+  console.log('getRandomElement length:' + array.length);
   return rand = array[Math.floor(Math.random() * array.length)];
 }
 
