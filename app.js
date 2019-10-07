@@ -1,27 +1,39 @@
-let app = {
-  animals : ['tortoise', 'turtle'],
-  flickr_result : [],
-  test_promise: [],
-  score : 0,
-  key: '868a9f43d8f17114fa4933992e882734', //not used
-  secret: 'da0b36527464b3e1', // not used
+const app = {
+  animals: ['tortoise', 'turtle'],
+  foundOnflickrAnimals: new Map(),
+  score: 0,
   flickrApiUrl: 'https://www.flickr.com/services/feeds/photos_public.gne?jsoncallback=?'
 };
 
-$(document).ready(function() {
-  console.log(app.animals);
+$(document).ready(function () {
+  console.log('Be ready to play with folowing animals:' + app.animals);
 
-  flickr_result = new Promise((resolve) => {
-    findOnFlickrByTag(resolve, app.animals[0]);
+  let promises = [];
+
+  app.animals.forEach(item => {
+    promises.push(new Promise((resolve) => {
+      findOnFlickrByTag(resolve, item);
+    }))
   });
 
-  flickr_result.then(function(value) {
-    console.log(value);
+  console.log(promises);
+
+  Promise.all(promises).then(value => {
+    console.log(value.length);   
+
+    value.forEach(animalMap => {
+      console.log(animalMap)
+    });
+
+    console.log(app.foundOnflickrAnimals);
+
     updateScore();
     loadImage(value);
+  }).catch((e) => {
+    //emtpy 
   });
 
-  $(".button").click(function() {
+  $(".button").click(function () {
     buttonEvent($(this))
   });
   updateTimer();
@@ -32,24 +44,25 @@ let updateScore = () => {
 }
 
 let findOnFlickrByTag = (resolve, animal) => {
-  arr = [];
+  let temp_map = new Map();
   $.getJSON(app.flickrApiUrl, {
     tags: animal,
     tagmode: "any",
     format: "json"
   }).then(function (result) {
     $.each(result.items, function (i, item) {
-      arr.push(item.media.m);
+      temp_map.set(item.media.m, animal);
     });
-    resolve(arr);
+    resolve(temp_map);
   });
 
 }
 
-let loadImage = (arrayImages) => {
+let loadImage = (found_result) => {
   $(".button").hide();
 
-  let src = getRandomElement(arrayImages);
+  console.log('found result' + found_result.getJSON);
+  let src = getRandomElement(found_result);
 
   $("#img").attr("src", src);
 
@@ -57,7 +70,7 @@ let loadImage = (arrayImages) => {
 }
 
 let getRandomElement = array => {
-  console.log('getRandomElement length:' + array.length);
+  console.log('Going to get random element, array.lenght=' + array.length);
   return rand = array[Math.floor(Math.random() * array.length)];
 }
 
@@ -77,7 +90,7 @@ let updateTimer = () => {
   function tick() {
     $("#timer").html(countDownDate + "s ");
     countDownDate--;
-    if( countDownDate > 0 ) {
+    if (countDownDate > 0) {
       setTimeout(tick, 1000);
     } else {
       $("#timer").html(countDownDate + "EXPIRED");
