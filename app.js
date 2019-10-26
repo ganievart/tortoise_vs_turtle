@@ -19,16 +19,11 @@ $(document).ready(function () {
   console.log(promises);
 
   Promise.all(promises).then(value => {
-    console.log(value.length);   
-
-    value.forEach(animalMap => {
-      console.log(animalMap)
-    });
-
-    console.log(app.foundOnflickrAnimals);
-
+    app.foundOnflickrAnimals = value;
+    let randomImage = getRandomImage(app.foundOnflickrAnimals);
+    console.log(randomImage);
     updateScore();
-    loadImage(value);
+    loadImage(randomImage);
   }).catch((e) => {
     //emtpy 
   });
@@ -37,7 +32,37 @@ $(document).ready(function () {
     buttonEvent($(this))
   });
   updateTimer();
+
 });
+
+let getRandomImage = array => {
+  console.log('Going to get random element, array.lenght=' + array.length);
+  let randomMap = array[Math.floor(Math.random() * array.length)];
+  let keys = Array.from(randomMap.keys());
+  let key = keys[Math.floor(Math.random() * keys.length)];
+  app.currentAnimal = randomMap.get(key);
+  console.log(app.currentAnimal);
+  return key;
+}
+
+let loadImage = (imageSrc) => {
+  $(".button").hide();
+  console.log('found result ' + imageSrc);
+  $("#img").attr("src", imageSrc);
+  $('#img').on('load', () => $(".button").show());
+}
+
+let buttonEvent = e => {
+  if ($(e).val().toUpperCase() === app.currentAnimal.toUpperCase()) {
+    app.score++;
+  }
+  else {
+    app.score--;
+  }
+  updateScore();
+  let randomImage = getRandomImage(app.foundOnflickrAnimals);
+  loadImage(randomImage);
+}
 
 let updateScore = () => {
   $("#score").html(app.score);
@@ -58,35 +83,8 @@ let findOnFlickrByTag = (resolve, animal) => {
 
 }
 
-let loadImage = (found_result) => {
-  $(".button").hide();
-
-  console.log('found result' + found_result.getJSON);
-  let src = getRandomElement(found_result);
-
-  $("#img").attr("src", src);
-
-  $('#img').on('load', () => $(".button").show());
-}
-
-let getRandomElement = array => {
-  console.log('Going to get random element, array.lenght=' + array.length);
-  return rand = array[Math.floor(Math.random() * array.length)];
-}
-
-let buttonEvent = e => {
-  if ($(e).val() === app.animal) {
-    app.score++;
-  }
-  else {
-    app.score--;
-  }
-  updateScore();
-  loadImage();
-}
-
 let updateTimer = () => {
-  var countDownDate = 10000000;
+  var countDownDate = 100000;
   function tick() {
     $("#timer").html(countDownDate + "s ");
     countDownDate--;
