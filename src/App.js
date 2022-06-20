@@ -7,8 +7,8 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <span>Tortoise vs Turtle</span>
-        <img src={logo} className="App-logo" alt="logo" />
+        <h1>Tortoise vs Turtle</h1>
+        <img src="https://live.staticflickr.com/65535/48825675382_94fe8efdb1_m.jpg" className="App-logo"/> 
         <Counter />
       </header>
     </div>

@@ -13,6 +13,12 @@
   }
 }
 
+@media (prefers-reduced-motion: no-preference) {
+  .App-image {
+    animation: App-logo-float infinite 3s ease-in-out;
+  }
+}
+
 .App-header {
   min-height: 80vh;
   display: flex;
@@ -30,9 +36,11 @@
   0% {
     transform: translateY(0);
   }
+
   50% {
     transform: translateY(10px);
   }
+
   100% {
     transform: translateY(0px);
   }
