@@ -13,7 +13,7 @@
 }
 
 .value, .text {
-  font-size: 32px;
+  font-size: 26px;
   padding-left: 9px;
   padding-right: 16px;
   margin-top: 15px;
@@ -60,7 +60,7 @@
 
 .fadeInAndOut {
   opacity: 1;
-  animation: fade 2s linear;
+  animation: fade 0.5s linear;
   font-family: monospace;
 }
 

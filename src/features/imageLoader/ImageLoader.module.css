@@ -1,0 +1,43 @@
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.row>button {
+  margin-left: 4px;
+  margin-right: 8px;
+}
+
+.row:not(:last-child) {
+  margin-bottom: 16px;
+}
+
+.button {
+  appearance: none;
+  background: none;
+  font-size: 18px;
+  padding-left: 6px;
+  padding-right: 6px;
+  outline: none;
+  border: 2px solid transparent;
+  color: rgb(130, 40, 208);
+  padding-bottom: 4px;
+  cursor: pointer;
+  background-color: rgba(72, 18, 147, 0.1);
+  border-radius: 2px;
+  transition: all 0.15s;
+  width: 200px;
+  margin-bottom: 20px;
+}
+
+.img {
+  height: 40vmin;
+  pointer-events: none;
+  display: block;
+}
+
+.header {
+  margin: 0;
+  padding: 0;
+}

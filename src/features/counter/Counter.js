@@ -30,26 +30,20 @@ export function Counter() {
           className={styles.button}
           onClick={() => dispatch(increment(incrementValue))}
         >
-          Tortoise
+          Correct
         </button>
         <button
           className={styles.button}
           onClick={() => dispatch(increment(incrementValue))}
         >
-          Turtle
-        </button>
-        <button
-          className={styles.button}
-          onClick={() => dispatch(increment(incrementValue))}
-        >
-          WTF!
+          Incorrect
         </button>
       </div>
       <div
         onAnimationEnd={() => dispatch(hideMessage())}
         className={isMessageVisible ? styles.fadeInAndOut : styles.hidden}
         >
-        Data has been saved!</div>
+        Record Saved</div>
     </div>
   );
 }
