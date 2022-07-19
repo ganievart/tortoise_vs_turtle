@@ -31,6 +31,15 @@
   margin-bottom: 20px;
 }
 
+.button:hover,
+.button:focus {
+  border: 2px solid rgba(76, 182, 76, 0.4);
+}
+
+.button:active {
+  background-color: rgba(76, 182, 94, 0.2);
+}
+
 .img {
   height: 40vmin;
   pointer-events: none;

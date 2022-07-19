@@ -27,13 +27,13 @@ export function Counter() {
       </div>
       <div className={styles.row}>
         <button
-          className={styles.button}
+          className={styles.correctButton}
           onClick={() => dispatch(increment(incrementValue))}
         >
           Correct
         </button>
         <button
-          className={styles.button}
+          className={styles.incorrectButton}
           onClick={() => dispatch(increment(incrementValue))}
         >
           Incorrect
