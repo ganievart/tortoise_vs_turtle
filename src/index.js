@@ -1,17 +1,21 @@
-import React from 'react';
-import { createRoot } from 'react-dom/client';
-import { Provider } from 'react-redux';
-import { store } from './app/store';
-import App from './App';
-import './index.css';
+import React from "react";
+import ReactDOM from "react-dom";
+import Navbar from "./components/navbar/Navbar";
+import Search from "./components/search/Search";
+import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
+import "./styles.css";
 
-const container = document.getElementById('root');
-const root = createRoot(container);
-
-root.render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <App />
-    </Provider>
-  </React.StrictMode>
-);
+class App extends React.Component {
+  render() {
+    return (
+      <MuiThemeProvider>
+        <div>
+          <Navbar />
+          <Search />
+        </div>
+      </MuiThemeProvider>
+    );
+  }
+}
+const rootElement = document.getElementById("root");
+ReactDOM.render(<App />, rootElement);
