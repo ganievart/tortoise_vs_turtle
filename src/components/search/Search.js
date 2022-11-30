@@ -1,76 +1,57 @@
-import React from "react";
-import TextField from "material-ui/TextField";
-import SelectField from "material-ui/SelectField";
-import MenuItem from "material-ui/MenuItem";
+// import TextField from "material-ui/TextField";
+// import SelectField from "material-ui/SelectField";
+// import MenuItem from "material-ui/MenuItem";
+// import Button from "material-ui/core/Button";
 import ImageResults from "../image-results/ImageResults";
 import axios from "axios";
+import Button from '@mui/material/Button';
+// import Button from 'react-bootstrap/Button';
+import React, { Component } from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { fetchImages, nextImage, prevImage } from '../../actions/index.js';
+import { useDispatch } from "react-redux";
 
 class Search extends React.Component {
+
   state = {
-    searchText: "",
-    amount: 15,
+    amount: 1,
     apiUrl: "https://pixabay.com/api",
     apiKey: "11047628-635bca23b99c10143c7630956",
     images: []
   };
-  onTextChange = e => {
-    const text = e.target.value;
-    this.setState(
-      () => ({
-        searchText: text
-      }),
-      () => {
-        if (text === "") {
-          this.setState({ images: [] });
-        } else {
-          axios
-            .get(
-              `${this.state.apiUrl}/?key=${this.state.apiKey}&q=${
-                this.state.searchText
-              }&image_type=photo&per_page=${this.state.amount}&safesearch=true`
-            )
-            .then(res => {
-              this.setState({ images: res.data.hits });
-            })
-            .catch(err => console.log(err));
-        }
-      }
-    );
-  };
-  onAmountChange = (e, index, value) => {
-    this.setState({ amount: value });
-  };
+
+  clickButton() {
+    console.log("clickButton")
+    axios.get(`${this.state.apiUrl}/?key=${this.state.apiKey}&q=turtle|tortoise&image_type=photo&safesearch=true`).then((res) => {
+      console.log(res.data.hits);
+      fetchImages(res.data.hits);
+      // this.props.images = res.data.hits;
+    });
+  }
+
   render() {
-    console.log(this.state.images);
+    // console.log(this.state.images);
     return (
       <div>
-        <TextField
-          name="searchText"
-          value={this.state.searchText}
-          onChange={this.onTextChange}
-          floatingLabelText="Search For Images"
-          fullWidth={true}
-        />
-        <br />
-        <SelectField
-          floatingLabelText="Amount"
-          value={this.state.amount}
-          onChange={this.onAmountChange}
-          name="amount"
-        >
-          <MenuItem value={5} primaryText="5" />
-          <MenuItem value={10} primaryText="10" />
-          <MenuItem value={15} primaryText="15" />
-          <MenuItem value={30} primaryText="30" />
-          <MenuItem value={50} primaryText="50" />
-        </SelectField>
-        <br />
-        {this.state.images.length > 0 ? (
-          <ImageResults images={this.state.images} />
-        ) : null}
-      </div>
+        <Button variant="contained" onClick={this.props.clickButton}>Load images</Button>
+      </div >
     );
   }
 }
 
-export default Search;
+function mapStateToProps(state) {
+  return {
+    images: state.images
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    clickButton: () => {
+      dispatch(fetchImages());
+    }
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Search);
