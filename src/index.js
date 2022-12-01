@@ -14,35 +14,27 @@ import NextButton from "./components/next/NextButton";
 import { Provider } from 'react-redux';
 import store from './store';
 
-class App extends React.Component {
-  render() {
-    return (
-      // <MuiThemeProvider>
-      <div>
-        <Navbar />
-        {/* <AppBar sx={{ bgcolor: "brown", borderBottom: "3px solid #eceff1" }} position="absolute" elevation={0} /> */}
-        <Grid container spacing={2}>
-          <Grid item xs={8}>
-            <NextButton />
-          </Grid>
-          <Grid item xs={8}>
-            <ImageResults />
-          </Grid>
-          <Grid item xs={8}>
-            <ButtonGroup variant="contained" aria-label="outlined primary button group">
-              <Button>Turtle</Button>
-              <Button>Tortoise</Button>
-              <Button>I don't know</Button>
-            </ButtonGroup>
-          </Grid>
-          <Grid item xs={8}>
-            <Search />
-          </Grid>
+function App() {
+  return (
+    <div>
+      <Navbar />
+      <Grid container spacing={2}>
+        <Grid item xs={8} justify="center">
+          <Search />
         </Grid>
-      </div>
-      // </MuiThemeProvider>
-    );
-  }
+        <Grid item xs={8} >
+          <ImageResults />
+        </Grid>
+        <Grid item xs={8} justify="center">
+          <ButtonGroup variant="contained" aria-label="outlined primary button group">
+            <Button>Turtle</Button>
+            <Button>Tortoise</Button>
+            <Button>I don't know</Button>
+          </ButtonGroup>
+        </Grid>
+      </Grid>
+    </div>
+  );
 }
 
 ReactDOM.render(

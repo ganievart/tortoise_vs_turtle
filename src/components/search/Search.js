@@ -21,15 +21,6 @@ class Search extends React.Component {
     images: []
   };
 
-  clickButton() {
-    console.log("clickButton")
-    axios.get(`${this.state.apiUrl}/?key=${this.state.apiKey}&q=turtle|tortoise&image_type=photo&safesearch=true`).then((res) => {
-      console.log(res.data.hits);
-      fetchImages(res.data.hits);
-      // this.props.images = res.data.hits;
-    });
-  }
-
   render() {
     // console.log(this.state.images);
     return (
