@@ -13,26 +13,36 @@ import ImageResults from "./components/image-results/ImageResults";
 import NextButton from "./components/next/NextButton";
 import { Provider } from 'react-redux';
 import store from './store';
+import Paper from '@mui/material/Paper';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+
+const darkTheme = createTheme({
+  palette: {
+    mode: 'light',
+  },
+});
 
 function App() {
   return (
     <div>
-      <Navbar />
-      <Grid container spacing={2}>
-        <Grid item xs={8} justify="center">
-          <Search />
+      <ThemeProvider theme={darkTheme}>
+        <Navbar />
+        <Grid container spacing={2} justify="center" align="center" alignItem="center">
+          <Grid item xs={12}>
+            <Search />
+          </Grid>
+          <Grid item xs={12}>
+            <ImageResults />
+          </Grid>
+          <Grid item xs={12}>
+            <ButtonGroup variant="contained" aria-label="outlined primary button group">
+              <Button>Turtle</Button>
+              <Button>Tortoise</Button>
+              <Button>WTF?!</Button>
+            </ButtonGroup>
+          </Grid>
         </Grid>
-        <Grid item xs={8} >
-          <ImageResults />
-        </Grid>
-        <Grid item xs={8} justify="center">
-          <ButtonGroup variant="contained" aria-label="outlined primary button group">
-            <Button>Turtle</Button>
-            <Button>Tortoise</Button>
-            <Button>I don't know</Button>
-          </ButtonGroup>
-        </Grid>
-      </Grid>
+      </ThemeProvider>
     </div>
   );
 }
