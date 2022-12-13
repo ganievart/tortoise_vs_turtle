@@ -1,6 +1,6 @@
 import requests, json, re
 
-key1 = '<ASK ARTUR>'
+key1 = '1f7116957a164c98a9d227b7d82193b6'
 
 BASE_URI = 'https://api.bing.microsoft.com/v7.0/images/visualsearch'
 

@@ -3,14 +3,14 @@ import axios from "axios";
 import Button from '@mui/material/Button';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getImages } from '../../actions/index.js';
+import { getImages, sendImage } from '../../actions/index.js';
 
 class NextButton extends React.Component {
     render() {
         // console.log(this.state.images);
         return (
             <div>
-                <Button variant="contained" onClick={this.props.clickButton}>Next image</Button>
+                <Button variant="outlined" onClick={this.props.clickButton}>Next image</Button>
             </div>
         );
     }
@@ -25,7 +25,7 @@ function mapStateToProps(state) {
 const mapDispatchToProps = dispatch => {
     return {
         clickButton: () => {
-            dispatch(getImages());
+            dispatch(sendImage());
         }
     };
 };
