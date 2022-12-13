@@ -5,15 +5,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getImages, sendImage } from '../../actions/index.js';
 
-class NextButton extends React.Component {
-    render() {
-        // console.log(this.state.images);
-        return (
-            <div>
-                <Button variant="outlined" onClick={this.props.clickButton}>Next image</Button>
-            </div>
-        );
-    }
+const NextButton = (props) => {
+    return (
+        <div>
+            <Button variant="outlined" onClick={props.clickButton}>{props.text}</Button>
+        </div>
+    );
 }
 
 function mapStateToProps(state) {

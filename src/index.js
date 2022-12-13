@@ -36,12 +36,9 @@ function App() {
           </Grid>
           <Grid item xs={12}>
             <ButtonGroup variant="contained" aria-label="outlined primary button group">
-              {/* <Button>Turtle</Button>
-              <Button>Tortoise</Button>
-              <Button>WTF?!</Button> */}
-              <NextButton>WTF?!</NextButton>
-              {/* <NextButton>WTF?!</NextButton> */}
-              {/* <NextButton>WTF?!</NextButton> */}
+              <NextButton text='Turtle' />
+              <NextButton text='Tortoise' />
+              <NextButton text='WTF?!' />
             </ButtonGroup>
           </Grid>
         </Grid>

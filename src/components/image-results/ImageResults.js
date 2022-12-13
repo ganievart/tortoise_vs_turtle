@@ -30,19 +30,6 @@ function ImageResults({ images }) {
   };
   return (
     <Box sx={{ maxWidth: 400, flexGrow: 1 }}>
-      {/* <Paper
-        square
-        elevation={0}
-        sx={{
-          display: 'flex',
-          alignItems: 'center',
-          height: 50,
-          pl: 2,
-          bgcolor: 'background.default',
-        }}
-      > */}
-        {/* <Typography>{images[activeStep].tags}</Typography> */}
-      {/* </Paper> */}
       <SwipeableViews
         axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
         index={activeStep}
