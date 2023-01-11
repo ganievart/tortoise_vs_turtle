@@ -36,9 +36,7 @@ function App() {
           </Grid>
           <Grid item xs={12}>
             <ButtonGroup variant="contained" aria-label="outlined primary button group">
-              <SendResponseButton text='Turtle' />
-              <SendResponseButton text='Tortoise' />
-              <SendResponseButton text='WTF?!' />
+              <SendResponseButton text='Check' />
             </ButtonGroup>
           </Grid>
         </Grid>

@@ -1,8 +1,19 @@
 import time
-from flask import Flask
+import logging
+from flask import Flask, request
+
+import bingSearch
 
 app = Flask(__name__)
 
 @app.route('/time')
 def get_current_time():
     return {'time': time.time()}
+
+@app.route('/api', methods=['POST'])
+def my_endpoint():
+    data = request.data
+    app.logger.debug(data)
+    print(data)
+    bingSearch.search(data)
+    return data

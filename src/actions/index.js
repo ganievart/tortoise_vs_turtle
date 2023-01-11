@@ -2,11 +2,12 @@ import axios from "axios";
 
 const apiUrl = "https://pixabay.com/api";
 const apiKey = "11047628-635bca23b99c10143c7630956";
+const query = "turtle|tortoisу";
+const perPage = 10;
 let fetchedImages = [];
 
 export const updateCurrentImage = (curentImage) => {
-    var url = (typeof curentImage == "undefined" ? '' : curentImage.webformatURL)
-    console.log(`update image ${url}`);
+    var url = (typeof curentImage === "undefined" ? '' : curentImage.webformatURL)
     return {
         type: 'UPDATE_CURRENT_URL',
         currentImageUrl: url
@@ -14,26 +15,37 @@ export const updateCurrentImage = (curentImage) => {
 }
 
 
-export const sendImage = (url) => {
-    console.log(`send image ${url}`);
+export const sendImage = (data) => {
+    console.log(`send image ${data}`);
     return dispatch => {
-        axios.get('/time')
-            .then(function (response) {
-                dispatch({
-                    type: 'SEND_IMAGE',
-                    time: response.data.time
-                });
-
-            })
-            .catch(function (error) {
-                console.log(error);
+        axios.post('/api', data, {
+            headers: { 'Content-Type': 'application/json' }
+        }).then(function (response) {
+            dispatch({
+                type: 'SEND_IMAGE',
+                time: response.data
             });
+
+        }).catch(function (error) {
+            console.log(error);
+        });
     }
+}
+
+const fetchTotalHits = async () => {
+    const totalHitsUrl = `https://pixabay.com/api/?key=${apiKey}&q=${query}&per_page=${perPage}`;
+    return await axios.get(totalHitsUrl);
 }
 
 export const fetchImages = () => {
     return dispatch => {
-        axios.get(`${apiUrl}/?key=${apiKey}&q=turtle|tortoise&image_type=photo&safesearch=true`)
+        fetchTotalHits()
+            .then(response => {
+                const totalHits = response.data.totalHits;
+                const randomPage = Math.floor(Math.random() * (totalHits / perPage)) + 1;
+                const url = `https://pixabay.com/api/?key=${apiKey}&q=${query}&per_page=${perPage}&page=${randomPage}`;
+                return axios.get(url);
+            })
             .then(function (response) {
                 fetchedImages = response.data.hits
                 dispatch({

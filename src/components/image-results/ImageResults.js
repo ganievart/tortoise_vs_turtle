@@ -21,7 +21,6 @@ function ImageResults({ images, props }) {
   const dispatch = useDispatch();
 
   React.useEffect(() => {
-    // updateCurrentImage(images[activeStep])
     dispatch(updateCurrentImage(images[activeStep]));
   }, [activeStep])
 
@@ -90,15 +89,6 @@ function ImageResults({ images, props }) {
 function mapStateToProps(state) {
   return {
     images: state.imageState.images
-  };
-};
-
-const mapDispatchToProps = dispatch => {
-  return {
-    updateCurrentImage: (image) => {
-      console.log(`DISPATCH UPDATE CURRENT IMAGE`)
-      dispatch(updateCurrentImage(image));
-    }
   };
 };
 

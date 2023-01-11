@@ -8,19 +8,13 @@ import { useSelector, useDispatch } from 'react-redux';
 
 const SendResponseButton = (props) => {
     const data = useSelector(state => state.imageState.currentImageUrl);
+    const dispatch = useDispatch();
     return (
         <div>
-            <Button variant="outlined" onClick={() => props.clickButton(data)}>{props.text}</Button>
+            <Button variant="outlined" onClick={() => dispatch(sendImage(data))}>{props.text}</Button>
         </div>
     );
 }
 
-const mapDispatchToProps = dispatch => {
-    return {
-        clickButton: (data) => {
-            console.log(`click ${data}`)
-        }
-    };
-};
 
-export default connect(mapDispatchToProps)(SendResponseButton);
+export default SendResponseButton;
