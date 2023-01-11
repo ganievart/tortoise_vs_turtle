@@ -8,21 +8,22 @@ import { getImages, sendImage } from '../../actions/index.js';
 const NextButton = (props) => {
     return (
         <div>
-            <Button variant="outlined" onClick={props.clickButton}>{props.text}</Button>
+            <Button variant="outlined" onClick={() => props.clickButton(props.currentImageUrl)}>{props.text}</Button>
         </div>
     );
 }
 
 function mapStateToProps(state) {
     return {
-        images: state.images
+        currentImageUrl: state.currentImageUrl
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        clickButton: () => {
-            dispatch(sendImage());
+        clickButton: (url) => {
+            console.log(`click ${url}`)
+            dispatch(sendImage(url));
         }
     };
 };

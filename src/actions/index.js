@@ -4,8 +4,18 @@ const apiUrl = "https://pixabay.com/api";
 const apiKey = "11047628-635bca23b99c10143c7630956";
 let fetchedImages = [];
 
-export const sendImage = () => {
-    console.log('send image');
+export const updateCurrentImage = (curentImage) => {
+    console.log(`update image ${curentImage}`);
+    return {
+        type: 'UPDATE_CURRENT_URL',
+        // currentImageUrl: (typeof curentImage === "undefined" ? '' : curentImage.webformatURL)
+        currentImageUrl: 'blabla'
+    }
+}
+
+
+export const sendImage = (url) => {
+    console.log(`send image ${url}`);
     return dispatch => {
         axios.get('/time')
             .then(function (response) {

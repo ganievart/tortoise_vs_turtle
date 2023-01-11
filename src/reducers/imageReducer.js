@@ -2,7 +2,7 @@ import { PlaylistAddOutlined } from "@mui/icons-material"
 
 export const initialState = {
     images: [],
-    currentImage: '',
+    currentImageUrl: '',
     url: '',
     time: ''
 }
@@ -19,6 +19,12 @@ const imageReducer = (state = initialState, action) => {
             return {
                 ...state,
                 time: action.time
+            }
+        case 'UPDATE_CURRENT_URL':
+            console.log(`reducer ${action.currentImageUrl}`)
+            return {
+                ...state,
+                // currentImageUrl: action.currentImageUrl
             }
         default:
             return state
