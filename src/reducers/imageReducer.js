@@ -22,9 +22,12 @@ const imageReducer = (state = initialState, action) => {
             }
         case 'UPDATE_CURRENT_URL':
             console.log(`reducer ${action.currentImageUrl}`)
+            // Object.keys(action.currentImageUrl).forEach(function (key) {
+            //     console.log(key + ": " + action.currentImageUrl[key]);
+            // });
             return {
                 ...state,
-                // currentImageUrl: action.currentImageUrl
+                currentImageUrl: action.currentImageUrl
             }
         default:
             return state

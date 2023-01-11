@@ -5,11 +5,11 @@ const apiKey = "11047628-635bca23b99c10143c7630956";
 let fetchedImages = [];
 
 export const updateCurrentImage = (curentImage) => {
-    console.log(`update image ${curentImage}`);
+    var url = (typeof curentImage == "undefined" ? '' : curentImage.webformatURL)
+    console.log(`update image ${url}`);
     return {
         type: 'UPDATE_CURRENT_URL',
-        // currentImageUrl: (typeof curentImage === "undefined" ? '' : curentImage.webformatURL)
-        currentImageUrl: 'blabla'
+        currentImageUrl: url
     }
 }
 

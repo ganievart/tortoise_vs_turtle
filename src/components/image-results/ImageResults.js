@@ -12,14 +12,17 @@ import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import SwipeableViews from 'react-swipeable-views';
 import { autoPlay } from 'react-swipeable-views-utils';
 import { updateCurrentImage } from "../../actions";
+import { useDispatch } from 'react-redux';
 
 function ImageResults({ images, props }) {
   const theme = useTheme();
   const [activeStep, setActiveStep] = React.useState(0);
   const maxSteps = images.length;
+  const dispatch = useDispatch();
 
   React.useEffect(() => {
-    updateCurrentImage(images[activeStep])
+    // updateCurrentImage(images[activeStep])
+    dispatch(updateCurrentImage(images[activeStep]));
   }, [activeStep])
 
   const handleNext = () => {
@@ -93,6 +96,7 @@ function mapStateToProps(state) {
 const mapDispatchToProps = dispatch => {
   return {
     updateCurrentImage: (image) => {
+      console.log(`DISPATCH UPDATE CURRENT IMAGE`)
       dispatch(updateCurrentImage(image));
     }
   };

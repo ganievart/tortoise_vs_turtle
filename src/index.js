@@ -10,7 +10,7 @@ import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import "./styles.css";
 import ImageResults from "./components/image-results/ImageResults";
-import NextButton from "./components/next/NextButton";
+import SendResponseButton from "./components/next/SendResponseButton";
 import { Provider } from 'react-redux';
 import store from './store';
 import Paper from '@mui/material/Paper';
@@ -36,9 +36,9 @@ function App() {
           </Grid>
           <Grid item xs={12}>
             <ButtonGroup variant="contained" aria-label="outlined primary button group">
-              <NextButton text='Turtle' />
-              <NextButton text='Tortoise' />
-              <NextButton text='WTF?!' />
+              <SendResponseButton text='Turtle' />
+              <SendResponseButton text='Tortoise' />
+              <SendResponseButton text='WTF?!' />
             </ButtonGroup>
           </Grid>
         </Grid>
