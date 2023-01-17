@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import Navbar from "./components/navbar/Navbar";
 import Search from "./components/search/Search";
+import Alert from "./components/search/Alert";
 // import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import Grid from '@mui/material/Grid';
 import AppBar from '@mui/material/AppBar';
@@ -15,6 +16,7 @@ import { Provider } from 'react-redux';
 import store from './store';
 import Paper from '@mui/material/Paper';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
+import '@fontsource/roboto/400.css';
 
 const darkTheme = createTheme({
   palette: {
@@ -38,6 +40,9 @@ function App() {
             <ButtonGroup variant="contained" aria-label="outlined primary button group">
               <SendResponseButton text='Check' />
             </ButtonGroup>
+          </Grid>
+          <Grid item xs={12}>
+            <Alert />
           </Grid>
         </Grid>
       </ThemeProvider>

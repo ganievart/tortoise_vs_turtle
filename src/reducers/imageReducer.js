@@ -3,7 +3,9 @@ import { PlaylistAddOutlined } from "@mui/icons-material"
 export const initialState = {
     images: [],
     currentImageUrl: '',
-    url: ''
+    url: '',
+    result: '',
+    isLoading: false
 }
 
 const imageReducer = (state = initialState, action) => {
@@ -14,10 +16,15 @@ const imageReducer = (state = initialState, action) => {
                 images: action.images
             }
         case 'SEND_IMAGE':
-            console.log(action.time)
+            console.log(action.result)
             return {
                 ...state,
-                time: action.time
+                result: action.result,
+            }
+        case 'IS_LOADING':
+            return {
+                ...state,
+                isLoading: action.isLoading,
             }
         case 'UPDATE_CURRENT_URL':
             return {

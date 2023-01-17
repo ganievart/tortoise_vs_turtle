@@ -18,14 +18,21 @@ export const updateCurrentImage = (curentImage) => {
 export const sendImage = (data) => {
     console.log(`send image ${data}`);
     return dispatch => {
+        dispatch({
+            type: 'IS_LOADING',
+            isLoading: true
+        })
         axios.post('/api', data, {
             headers: { 'Content-Type': 'application/json' }
         }).then(function (response) {
             dispatch({
                 type: 'SEND_IMAGE',
-                time: response.data
+                result: response.data
             });
-
+            dispatch({
+                type: 'IS_LOADING',
+                isLoading: false
+            })
         }).catch(function (error) {
             console.log(error);
         });

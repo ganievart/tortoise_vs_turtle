@@ -25,7 +25,7 @@ class Search extends React.Component {
     // console.log(this.state.images);
     return (
       <div>
-        <Button variant="contained" onClick={this.props.clickButton}>Load images</Button>
+        <Button variant="contained" onClick={this.props.clickButton}>Refresh images</Button>
       </div >
     );
   }

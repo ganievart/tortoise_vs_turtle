@@ -15,11 +15,6 @@ HEADERS = {'Ocp-Apim-Subscription-Key': SUBSCRIPTION_KEY}
 
 def parse(obj):
     result = []
-    # for tag in obj['tags']:
-    #     for actions in tag['actions']:
-    #         if '_type' in actions and actions['_type'] == 'ImageRelatedSearchesAction':
-    #             for name in actions.get('data', {}).get('value', {}):
-    #                 result.append(name['displayText'])
     for tag in obj['tags']:
         for actions in tag['actions']:
             if 'displayName' in actions:
@@ -71,7 +66,8 @@ def search(url):
 
         result = parse(response.json())
         # print(result)
-        return most_used_word(result)
+        return "It's probably - " + most_used_word(result)
 
     except Exception as ex:
-        raise ex
+        logging.error(ex)
+        return "Can't identify image, check logs"
