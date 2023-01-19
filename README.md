@@ -1,11 +1,19 @@
-# AI Image Recognition Manual Trainer
+# Tortoise vs Turtle
 
-## Available Scripts
+## About
 
-In the project directory, you can run:
+**Tortoise vs Turtle** is a hobby project that allows users to test their knowledge of the differences between tortoises and turtles. It obtains free random images from Pixabay and then uses Bing to determine if the image depicts a turtle or a tortoise.
 
-### `npm start`
-### `npm start-api`
-### `npm test`
-### `npm run build`
-### `npm run eject`
+## Demo
+
+
+
+## Contribution
+### Prerequisites
+
+The project requires `npm` and `pip` to be installed on your local machine.
+
+### How to start a project
+
+1. Run `npm install` and `npm start` command to start a frontend
+2. Run `pip install` and `flask run` to start a backend

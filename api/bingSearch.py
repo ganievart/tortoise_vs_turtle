@@ -3,7 +3,7 @@ import logging
 from collections import Counter
 from nltk import ngrams
 
-key1 = ''
+key1 = '40ecd598005a45919b05b0df2a3dd354'
 
 BASE_URI = 'https://api.bing.microsoft.com/v7.0/images/visualsearch'
 
