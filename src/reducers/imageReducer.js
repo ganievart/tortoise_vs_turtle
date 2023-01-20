@@ -1,5 +1,3 @@
-import { PlaylistAddOutlined } from "@mui/icons-material"
-
 export const initialState = {
     images: [],
     currentImageUrl: '',

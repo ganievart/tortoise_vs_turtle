@@ -1,16 +1,12 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { connect } from 'react-redux'
 import Button from '@mui/material/Button';
 import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import MobileStepper from '@mui/material/MobileStepper';
-import Paper from '@mui/material/Paper';
-import Typography from '@mui/material/Typography';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import SwipeableViews from 'react-swipeable-views';
-import { autoPlay } from 'react-swipeable-views-utils';
 import { updateCurrentImage } from "../../actions";
 import { useDispatch } from 'react-redux';
 
