@@ -26,10 +26,10 @@ function App() {
         <Navbar />
         <Grid container spacing={2} justify="center" align="center">
           <Grid item xs={12}>
-            {/* <Search /> */}
+            <Search />
           </Grid>
           <Grid item xs={12}>
-            {/* <ImageResults /> */}
+            <ImageResults />
           </Grid>
           <Grid item xs={12}>
             <ButtonGroup variant="contained" aria-label="outlined primary button group">
@@ -37,7 +37,7 @@ function App() {
             </ButtonGroup>
           </Grid>
           <Grid item xs={12}>
-            {/* <Alert /> */}
+            <Alert />
           </Grid>
         </Grid>
       </ThemeProvider>
