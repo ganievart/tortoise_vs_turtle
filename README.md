@@ -15,5 +15,5 @@ The project requires `npm` and `pip` to be installed on your local machine.
 
 ### How to start a project
 
-1. Run `npm install` and `npm start` command to start a frontend
-2. Run `pip install` and `flask run` to start a backend
+1. Run `npm install` and `npm start` command to start a frontend.
+2. Run `pip install` and `flask run` to start a backend.
