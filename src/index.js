@@ -26,7 +26,7 @@ function App() {
         <Navbar />
         <Grid container spacing={2} justify="center" align="center">
           <Grid item xs={12}>
-            <Search />
+            {/* <Search /> */}
           </Grid>
           <Grid item xs={12}>
             <ImageResults />
