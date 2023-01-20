@@ -33,11 +33,11 @@ function App() {
           </Grid>
           <Grid item xs={12}>
             <ButtonGroup variant="contained" aria-label="outlined primary button group">
-              {/* <SendResponseButton text='Check' /> */}
+              <SendResponseButton text='Check' />
             </ButtonGroup>
           </Grid>
           <Grid item xs={12}>
-            <Alert />
+            {/* <Alert /> */}
           </Grid>
         </Grid>
       </ThemeProvider>
