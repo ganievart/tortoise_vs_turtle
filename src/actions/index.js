@@ -47,12 +47,14 @@ export const fetchImages = () => {
     return dispatch => {
         fetchTotalHits()
             .then(response => {
+                console.log(response)
                 const totalHits = response.data.totalHits;
                 const randomPage = Math.floor(Math.random() * (totalHits / perPage)) + 1;
                 const url = `https://pixabay.com/api/?key=${apiKey}&q=${query}&per_page=${perPage}&page=${randomPage}`;
                 return axios.get(url);
             })
             .then(function (response) {
+                console.log(response)
                 fetchedImages = response.data.hits
                 dispatch({
                     type: 'FETCH_IMAGES',
