@@ -5,7 +5,7 @@
 **Tortoise vs Turtle** is a hobby project that allows users to test their knowledge of the differences between tortoises and turtles. It obtains free random images from Pixabay and then uses Bing to determine if the image depicts a turtle or a tortoise.
 
 ## Demo
-https://tortoise-vs-turtle.onrender.com
+https://polite-sand-0a120e210.2.azurestaticapps.net/
 
 
 ## Contribution

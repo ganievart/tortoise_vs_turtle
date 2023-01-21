@@ -1,24 +1,22 @@
-import React from "react";
-import { connect } from 'react-redux'
+import React, { useState, useEffect } from 'react';
 import Button from '@mui/material/Button';
-import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import MobileStepper from '@mui/material/MobileStepper';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import SwipeableViews from 'react-swipeable-views';
 import { updateCurrentImage } from "../../actions";
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch, connect, } from 'react-redux';
 
-function ImageResults({ images, props }) {
-  const theme = useTheme();
-  const [activeStep, setActiveStep] = React.useState(0);
-  const maxSteps = images.length;
+function ImageResults() {
+  const [activeStep, setActiveStep] = useState(0);
   const dispatch = useDispatch();
+  const images = useSelector(state => state.imageState.images);
+  const maxSteps = images.length;
 
-  React.useEffect(() => {
+  useEffect(() => {
     dispatch(updateCurrentImage(images[activeStep]));
-  }, [activeStep])
+  }, [dispatch, activeStep, images])
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -31,7 +29,7 @@ function ImageResults({ images, props }) {
   return (
     <Box sx={{ maxWidth: 400, flexGrow: 1 }}>
       <SwipeableViews
-        axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
+        // axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
         index={activeStep}
         enableMouseEvents
       >
@@ -81,13 +79,7 @@ function ImageResults({ images, props }) {
   );
 }
 
+export default connect()(ImageResults);
 
-function mapStateToProps(state) {
-  return {
-    images: state.imageState.images
-  };
-};
-
-export default connect(mapStateToProps)(ImageResults)
 
 

@@ -37,7 +37,7 @@ function App() {
             </ButtonGroup>
           </Grid>
           <Grid item xs={12}>
-            {/* <Alert /> */}
+            <Alert />
           </Grid>
         </Grid>
       </ThemeProvider>

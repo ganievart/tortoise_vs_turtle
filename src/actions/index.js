@@ -67,7 +67,7 @@ export const fetchImages = () => {
 }
 
 export const getImages = () => {
-    if (fetchedImages.length == 0) {
+    if (fetchedImages.length === 0) {
         fetchImages()
     } else return {
         type: 'FETCH_IMAGES',
