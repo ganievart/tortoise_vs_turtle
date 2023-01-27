@@ -3,7 +3,7 @@ import logging
 from collections import Counter
 from nltk import ngrams
 
-key1 = '40ecd598005a45919b05b0df2a3dd354'
+key1 = ''
 
 BASE_URI = 'https://api.bing.microsoft.com/v7.0/images/visualsearch'
 
@@ -23,29 +23,15 @@ def parse(obj):
 
 
 def most_used_word(result):
-    # join all the sentences in the array
     text = ' '.join(result)
-
-    # remove special characters and numbers
     cleaned_text = re.sub('[^A-Za-z]+', ' ', text)
-
-    # convert to lowercase
     cleaned_text = cleaned_text.lower()
-
-    # remove stopwords
     stopwords = ['the', 'are', 'is', 'you']
     filtered_text = ' '.join([word for word in cleaned_text.split() if word not in stopwords])
-
-    # create 2-grams from the filtered text
     n = min(2, len(filtered_text))
     bigrams = ngrams(filtered_text.split(), n)
-
-    # create a counter of the bigrams
     counter = Counter(bigrams)
-
-    # find the most common bigram
     most_common_bigram = counter.most_common(1)[0][0]
-
     return ' '.join(most_common_bigram)
 
 

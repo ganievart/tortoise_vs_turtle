@@ -1,15 +1,15 @@
 import time
-import logging
 from flask import Flask, request
 
 import bingSearch
+import pixabay
 
 app = Flask(__name__)
 
 
-@app.route('/time')
-def get_current_time():
-    return {'time': time.time()}
+@app.route('/fetchImages')
+def fetch_images():
+    return pixabay.fetch()
 
 
 @app.route('/api', methods=['POST'])
@@ -19,3 +19,8 @@ def my_endpoint():
     result = bingSearch.search(data)
     app.logger.debug(result)
     return result
+
+
+@app.route('/timeTest')
+def get_current_time():
+    return {'time': time.time()}
