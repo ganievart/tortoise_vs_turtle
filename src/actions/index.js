@@ -1,8 +1,5 @@
 import axios from "axios";
 
-const apiKey = "27988636-45083f4c2c46679e340357c73";
-const query = "turtle|tortoisу";
-const perPage = 10;
 let fetchedImages = [];
 
 export const updateCurrentImage = (curentImage) => {
@@ -36,11 +33,6 @@ export const sendImage = (data) => {
             console.log(error);
         });
     }
-}
-
-const fetchTotalHits = async () => {
-    const totalHitsUrl = `https://pixabay.com/api/?key=${apiKey}&q=${query}&per_page=${perPage}`;
-    return await axios.get(totalHitsUrl);
 }
 
 export const fetchImages = () => {

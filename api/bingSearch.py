@@ -3,13 +3,13 @@ import logging
 from collections import Counter
 from nltk import ngrams
 
-key1 = ''
+import os
+from dotenv import load_dotenv
 
+load_dotenv()
+SUBSCRIPTION_KEY = os.getenv("bingkey")
 BASE_URI = 'https://api.bing.microsoft.com/v7.0/images/visualsearch'
-
-SUBSCRIPTION_KEY = key1
 imagePath = '2022-12-06 14.52.46.jpg'
-
 HEADERS = {'Ocp-Apim-Subscription-Key': SUBSCRIPTION_KEY}
 
 
