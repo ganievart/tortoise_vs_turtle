@@ -24,7 +24,6 @@ pixabaykey=<PUT_PIXABAY_KEY_HERE>
 bingkey=<PUT_BING_KEY_HERE>
 ```
 1. Build and run app with docker-compose `docker-compose --env-file api/.env up`.
-1. Run app with `docker run tortoiseVsTurtleApp`.
 
 To rebuild container after stopping use `docker-compose --env-file api/.env up --build`
 

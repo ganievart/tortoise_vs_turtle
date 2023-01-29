@@ -1,10 +1,16 @@
 import time
-from flask import Flask, request
+from flask import Flask, render_template, send_from_directory, request
 
 import bingSearch
 import pixabay
 
-app = Flask(__name__)
+# app = Flask(__name__)
+app = Flask(__name__, static_url_path='/', static_folder='static')
+# app = Flask(__name__, static_folder='static')
+
+@app.route('/')
+def index():
+    return send_from_directory(app.static_folder, 'index.html')
 
 
 @app.route('/fetchImages')
@@ -24,3 +30,8 @@ def my_endpoint():
 @app.route('/timeTest')
 def get_current_time():
     return {'time': time.time()}
+
+
+if __name__ == "__main__":
+    app.run()
+

@@ -50,5 +50,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://flask:5000"
+  "proxy": "http://app:5000"
 }
