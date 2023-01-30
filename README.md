@@ -18,7 +18,7 @@ The project requires `docker` to be installed on your local machine.
 ### How to start
 
 1. Request the tokens for Pixabay and Azure Bing from Artur.
-1. Create a file named `.env` in the `api` folder, and add provided keys to it.
+1. Create a file named `.env` in the `root` directory, and add provided keys to it.
 ```
 pixabaykey=<PUT_PIXABAY_KEY_HERE>
 bingkey=<PUT_BING_KEY_HERE>
@@ -29,18 +29,15 @@ To rebuild container after stopping use `docker-compose --env-file api/.env up -
 
 ### Run Client (UI) only
 Node 16.13.1 si required.
+1. Go to `client` folder.
 1. Run `npm install`
 1. Run `npm run start`
 
 ### Run API only
-#### Docker
-1. Build `docker build -f Dockerfile.api -t api .`
-1. Run `docker run --rm -p 5000:5000 --env-file api/.env api`
-Application is accessible on `localhost:5000`
 
 #### Flask
 Python 3.7 is required.
-1. Run `flask run` inside `api` folder
+1. Run `flask run`
 
 ### Cleanup
 #### To remove all containers:
