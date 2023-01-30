@@ -48,4 +48,4 @@ jobs:
         app-name: 'TortoiseVsTurtleWebApp'
         slot-name: 'production'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_5831d5f42e314c7a9885badbc1bd3b3c }}
-        images: 'index.docker.io/${{ secrets.AzureAppService_ContainerUsername_2649c80fe9d9481aabb9e45a416b74ea }}/ganievart/tortoise_vs_turtle:latest'
+        images: 'index.docker.io/${{ secrets.AzureAppService_ContainerUsername_2649c80fe9d9481aabb9e45a416b74ea }}/tortoise_vs_turtle:latest'
