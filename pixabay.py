@@ -1,21 +1,25 @@
-import random
-import requests
-from flask import make_response
 import os
+import random
+
+import requests
 from dotenv import load_dotenv
+from flask import make_response
+
+from client.settings import get_images_query
 
 load_dotenv()
 
-pixabayUrl= "https://pixabay.com/api/"
+pixabayUrl = "https://pixabay.com/api/"
 apiKey = os.getenv("pixabaykey")
-query = "turtle|tortoise"
+query = get_images_query()
 perPage = 10
-fetchedImages = []
+
 
 def fetch_total_hits():
     total_hits_url = f'{pixabayUrl}?key={apiKey}&q={query}&per_page={perPage}'
     response = requests.get(total_hits_url)
     return response.json()
+
 
 def fetch():
     response = fetch_total_hits()
@@ -25,5 +29,4 @@ def fetch():
     response = requests.get(url)
     fetched_images = response.json()['hits']
     print(fetched_images)
-    flask_response = make_response(response.content, response.status_code)
-    return flask_response
+    return make_response(response.content, response.status_code)
