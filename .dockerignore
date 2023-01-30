@@ -1,7 +1,7 @@
-node_modules/
-npm-debug.log
-build/
+.venv
 .env
-.DS_Store
+.flaskenv
 .git/
+.github/
+.__pycache__
 .gitignore
