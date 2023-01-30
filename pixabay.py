@@ -5,7 +5,7 @@ import requests
 from dotenv import load_dotenv
 from flask import make_response
 
-from client.settings import get_images_query
+from settings import get_images_query
 
 load_dotenv()
 
