@@ -47,5 +47,5 @@ Python 3.7 is required.
 `docker rm -f $(docker ps -aq)`
 
 #### To remove all images:
-`docker rmi -f $(docker images -q)`
+`docker rm -f $(docker ps -aq)`
 Please note that these commands will remove all running and stopped containers and all images from your system. If you want to keep some images or containers, you can list them and exclude them from the command.

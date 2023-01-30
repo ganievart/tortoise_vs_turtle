@@ -1,7 +1,10 @@
 .venv
 .env
-.flaskenv
 .git/
 .github/
 .__pycache__
 .gitignore
+
+client/node_modules/
+client/npm-debug.log
+client/build/
