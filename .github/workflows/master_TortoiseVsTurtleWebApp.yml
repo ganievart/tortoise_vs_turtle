@@ -30,7 +30,7 @@ jobs:
       uses: docker/build-push-action@v2
       with:
         push: true
-        tags: index.docker.io/${{ secrets.AzureAppService_ContainerUsername_2649c80fe9d9481aabb9e45a416b74ea }}/ganievart/tortoise_vs_turtle:${{ github.sha }}
+        tags: index.docker.io/${{ secrets.AzureAppService_ContainerUsername_2649c80fe9d9481aabb9e45a416b74ea }}/tortoise_vs_turtle:${{ github.sha }}
         file: ./Dockerfile
 
   deploy:
