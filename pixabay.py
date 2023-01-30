@@ -5,11 +5,13 @@ import requests
 from dotenv import load_dotenv
 from flask import make_response
 
+from client.settings import get_images_query
+
 load_dotenv()
 
 pixabayUrl = "https://pixabay.com/api/"
 apiKey = os.getenv("pixabaykey")
-query = "turtle|tortoise"
+query = get_images_query()
 perPage = 10
 
 
