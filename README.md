@@ -25,6 +25,7 @@ bingkey=<PUT_BING_KEY_HERE>
 ```
 3. Build with docker `docker build -f Dockerfile -t app .`.
 4. Run `docker run -p 80:5000 --env-file .env app`
+
 Application is avaliable on `http://localhost/`
 
 ### Run Client (UI) only
@@ -33,9 +34,13 @@ Node 16.13.1 si required.
 1. Run `npm install`
 1. Run `npm run start`
 
+UI is avaliable on `http://localhost:30000/`
+
 ### Run API only
 Python 3.7 is required.
 1. Run `flask run`
+
+API is avaliable on `http://localhost:50000/`
 
 ### Cleanup
 #### To remove all containers:
