@@ -31,8 +31,8 @@ Application is avaliable on `http://localhost/`
 ### Run Client (UI) only
 Node 16.13.1 si required.
 1. Go to `client` folder.
-1. Run `npm install`
-1. Run `npm run start`
+2. Run `npm install`
+3. Run `npm run start`
 
 UI is avaliable on `http://localhost:30000/`
 
