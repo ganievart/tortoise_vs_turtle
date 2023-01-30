@@ -1,10 +1,12 @@
 import time
-from flask import Flask, render_template, send_from_directory, request
+
+from flask import Flask, send_from_directory, request
 
 import bingSearch
 import pixabay
 
 app = Flask(__name__, static_url_path='/', static_folder='static')
+
 
 @app.route('/')
 def index():
@@ -32,4 +34,3 @@ def get_current_time():
 
 if __name__ == "__main__":
     app.run()
-
